@@ -24,3 +24,4 @@ def build_cartesian_tree_util(arr, start, end):
 
 arr = [9, 5, 10, 0, 6, 11, -1, 1, 2]
 root = build_cartesian_tree(arr)
+
