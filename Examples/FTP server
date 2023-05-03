@@ -1,0 +1,16 @@
+import ftplib
+from socketserver import ThreadingTCPServer, FTPHandler
+
+FTP_PORT = 2121  # The port on which to listen for incoming FTP connections
+FTP_ROOT = '/Users/Shared/ftp'  # The directory to serve files from
+
+# Define a custom handler for FTP requests
+class MyFTPHandler(FTPHandler):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.cwd = FTP_ROOT  # Set the FTP root directory
+
+# Create and start the FTP server
+with ThreadingTCPServer(('', FTP_PORT), MyFTPHandler) as server:
+    print(f'Starting FTP server on port {FTP_PORT}...')
+    server.serve_forever()
